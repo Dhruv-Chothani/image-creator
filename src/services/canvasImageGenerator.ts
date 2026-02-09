@@ -282,33 +282,32 @@ function drawName(ctx: CanvasRenderingContext2D, template: Template, userName: s
   ctx.restore();
 }
 
-// Template definitions for different categories
 export const getTemplatesForCategory = (category: string): Template[] => {
   const templates: Record<string, Template[]> = {
     birthday: [
       {
-        id: 'birthday-1',
-        occasionId: 'birthday',
+        id: 'birthday-friend-1',
+        occasionId: 'birthday-friend',
         layout: { type: 'center' },
         background: { 
-          gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          gradient: 'linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #ff8c00 100%)',
           pattern: 'confetti'
         },
         frame: {
-          shape: 'circle',
+          shape: 'star',
           x: 50,
           y: 35,
           size: 25,
           borderColor: '#ffffff',
           borderWidth: 4,
-          glowColor: '#ffd700',
+          glowColor: '#ff6b6b',
           shadow: true
         },
         greeting: {
           line1: 'Happy Birthday',
-          line2: 'Wishing you joy',
+          line2: 'Bestie Forever!',
           line1Size: 64,
-          line2Size: 36,
+          line2Size: 42,
           color: '#ffffff',
           fontStyle: 'playful',
           y: 15
@@ -318,23 +317,185 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           color: '#ffffff',
           y: 65,
           badge: true,
-          badgeColor: 'rgba(255,215,0,0.3)'
+          badgeColor: 'rgba(255,107,107,0.3)'
         },
         decorations: {
           topEmoji: '🎉',
           bottomEmoji: '🎂',
-          cornerEmojis: ['🎈', '🎁'],
+          cornerEmojis: ['🎈', '🎁', '🎊'],
           borderDecor: 'gold'
         }
-      }
-    ],
-    love: [
+      },
       {
-        id: 'love-1',
-        occasionId: 'love',
+        id: 'birthday-friend-2',
+        occasionId: 'birthday-friend',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #ffd700 100%)',
+          pattern: 'balloons'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#ff6b9d',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Party Time!',
+          line2: 'Birthday Vibes',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'My dear ',
+          suffix: ' 🎉'
+        },
+        decorations: {
+          topEmoji: '🎊',
+          bottomEmoji: '🌟',
+          cornerEmojis: ['💫', '✨', '🎈'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'birthday-friend-3',
+        occasionId: 'birthday-friend',
+        layout: { type: 'split' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'hexagon',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#667eea',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Another Year',
+          line2: 'Another Adventure',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(102,126,234,0.3)'
+        },
+        decorations: {
+          topEmoji: '🚀',
+          bottomEmoji: '⭐',
+          cornerEmojis: ['🌟', '💫'],
+          borderDecor: 'ribbon'
+        }
+      },
+      {
+        id: 'birthday-brother-1',
+        occasionId: 'birthday-brother',
         layout: { type: 'center' },
         background: { 
-          gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+          gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #1e3c72 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'star',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#00d4ff',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Brother Goals!',
+          line2: 'Birthday King',
+          line1Size: 60,
+          line2Size: 40,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(79,172,254,0.3)'
+        },
+        decorations: {
+          topEmoji: '👑',
+          bottomEmoji: '🏆',
+          cornerEmojis: ['💪', '🎮', '🎯'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'birthday-brother-2',
+        occasionId: 'birthday-brother',
+        layout: { type: 'left' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #2196f3 0%, #1976d2 50%, #0d47a1 100%)',
+          pattern: 'waves'
+        },
+        frame: {
+          shape: 'rounded',
+          x: 35,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#2196f3',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Level Up!',
+          line2: 'Bro Mode On',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Bro ',
+          suffix: ' 🎮'
+        },
+        decorations: {
+          topEmoji: '🎯',
+          bottomEmoji: '🏅',
+          cornerEmojis: ['⚡', '🔥'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'birthday-sister-1',
+        occasionId: 'birthday-sister',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fad0c4 100%)',
           pattern: 'hearts'
         },
         frame: {
@@ -344,13 +505,673 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           size: 25,
           borderColor: '#ffffff',
           borderWidth: 4,
+          glowColor: '#ff6b9d',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Princess Birthday',
+          line2: 'Sister Love',
+          line1Size: 60,
+          line2Size: 40,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,154,158,0.3)'
+        },
+        decorations: {
+          topEmoji: '👑',
+          bottomEmoji: '💖',
+          cornerEmojis: ['🌸', '🦄', '💕'],
+          borderDecor: 'floral'
+        }
+      },
+      {
+        id: 'birthday-sister-2',
+        occasionId: 'birthday-sister',
+        layout: { type: 'corner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'oval',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#f093fb',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Sweet as Sugar',
+          line2: 'Birthday Queen',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Sweet ',
+          suffix: ' 🍰'
+        },
+        decorations: {
+          topEmoji: '🎀',
+          bottomEmoji: '🌹',
+          cornerEmojis: ['💝', '🎈'],
+          borderDecor: 'ribbon'
+        }
+      },
+      {
+        id: 'birthday-mother-1',
+        occasionId: 'birthday-mother',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 50%, #ffd700 100%)',
+          pattern: 'floral'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#fa709a',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Super Mom',
+          line2: 'Birthday Blessings',
+          line1Size: 60,
+          line2Size: 40,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          prefix: 'Mom ',
+          suffix: ' 🌹'
+        },
+        decorations: {
+          topEmoji: '🌺',
+          bottomEmoji: '💐',
+          cornerEmojis: ['🕊️', '🌻', '💖'],
+          borderDecor: 'floral'
+        }
+      },
+      {
+        id: 'birthday-mother-2',
+        occasionId: 'birthday-mother',
+        layout: { type: 'bottom' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+          pattern: 'dots'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 25,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#fcb69f',
+          shadow: true
+        },
+        greeting: {
+          line1: 'World\'s Best Mom',
+          line2: 'Love You Forever',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 55
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 85,
+          prefix: 'Dear ',
+          suffix: ' 🌷'
+        },
+        decorations: {
+          topEmoji: '💕',
+          bottomEmoji: '🎂',
+          cornerEmojis: ['🌸', '✨'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'birthday-father-1',
+        occasionId: 'birthday-father',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #30cfd0 0%, #330867 50%, #1a237e 100%)',
+          pattern: 'none'
+        },
+        frame: {
+          shape: 'star',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#30cfd0',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Dad Strong',
+          line2: 'Birthday Hero',
+          line1Size: 60,
+          line2Size: 40,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          prefix: 'Father ',
+          suffix: ' 🎩'
+        },
+        decorations: {
+          topEmoji: '🎖️',
+          bottomEmoji: '⭐',
+          cornerEmojis: ['🏅', '🎯', '💼'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'birthday-father-2',
+        occasionId: 'birthday-father',
+        layout: { type: 'fullBg' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #434343 0%, #000000 100%)',
+          pattern: 'mandala'
+        },
+        frame: {
+          shape: 'diamond',
+          x: 50,
+          y: 35,
+          size: 22,
+          borderColor: '#ffd700',
+          borderWidth: 3,
+          glowColor: '#ffd700',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Legend Dad',
+          line2: 'Birthday Wisdom',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffd700',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Papa ',
+          suffix: ' 🏆'
+        },
+        decorations: {
+          topEmoji: '👨‍👩‍👧‍👦',
+          bottomEmoji: '🎁',
+          cornerEmojis: ['🌟', '💎'],
+          borderDecor: 'sparkle'
+        }
+      }
+    ],
+    festivals: [
+      {
+        id: 'festival-diwali-1',
+        occasionId: 'festival-diwali',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd700 100%)',
+          pattern: 'diyas'
+        },
+        frame: {
+          shape: 'star',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffd700',
+          borderWidth: 4,
+          glowColor: '#ff6b35',
+          shadow: true
+        },
+        greeting: {
+          line1: 'दीपावली की हार्दिक शुभकामनाएं',
+          line2: 'Ganpati Bappa Morya!',
+          line1Size: 56,
+          line2Size: 42,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffd700',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,215,0,0.3)'
+        },
+        decorations: {
+          topEmoji: '🪔',
+          bottomEmoji: '✨',
+          cornerEmojis: ['🎆', '🌟', '💫'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'festival-diwali-2',
+        occasionId: 'festival-diwali',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #8b4513 0%, #d2691e 50%, #ffd700 100%)',
+          pattern: 'rangoli'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffd700',
+          borderWidth: 3,
+          glowColor: '#ff6b35',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Shubh Diwali',
+          line2: 'May lights guide your way',
+          line1Size: 64,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffd700',
+          y: 70,
+          prefix: 'Dear ',
+          suffix: ' 🎊'
+        },
+        decorations: {
+          topEmoji: '🏮',
+          bottomEmoji: '🌺',
+          cornerEmojis: ['💥', '🎇'],
+          borderDecor: 'floral'
+        }
+      },
+      {
+        id: 'festival-diwali-3',
+        occasionId: 'festival-diwali',
+        layout: { type: 'fullBg' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #4a0e0e 0%, #8b0000 50%, #ff6b35 100%)',
+          pattern: 'mandala'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffd700',
+          borderWidth: 4,
+          glowColor: '#ffd700',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Happy Diwali',
+          line2: 'Lakshmi Ki Jai!',
+          line1Size: 60,
+          line2Size: 40,
+          color: '#ffd700',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,215,0,0.4)'
+        },
+        decorations: {
+          topEmoji: '🪔',
+          bottomEmoji: '🎆',
+          cornerEmojis: ['✨', '🌟'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'festival-christmas-1',
+        occasionId: 'festival-christmas',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #0f7938 0%, #228b22 50%, #c62828 100%)',
+          pattern: 'snowflakes'
+        },
+        frame: {
+          shape: 'star',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#c62828',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Ho Ho Ho!',
+          line2: 'Merry Christmas',
+          line1Size: 56,
+          line2Size: 42,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(198,40,40,0.3)'
+        },
+        decorations: {
+          topEmoji: '🎄',
+          bottomEmoji: '🎅',
+          cornerEmojis: ['🔔', '⛄', '🎁'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'festival-christmas-2',
+        occasionId: 'festival-christmas',
+        layout: { type: 'top' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #c62828 100%)',
+          pattern: 'snowflakes'
+        },
+        frame: {
+          shape: 'rounded',
+          x: 50,
+          y: 45,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#c62828',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Joy to the World',
+          line2: 'Peace & Love',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 72,
+          prefix: 'Merry Christmas ',
+          suffix: ' 🎄'
+        },
+        decorations: {
+          topEmoji: '🎅',
+          bottomEmoji: '🤶',
+          cornerEmojis: ['🔔', '⭐'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'festival-holi-1',
+        occasionId: 'festival-holi',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff1493 0%, #00ff00 25%, #ffff00 50%, #ff4500 75%, #9400d3 100%)',
+          pattern: 'confetti'
+        },
+        frame: {
+          shape: 'hexagon',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ff1493',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Rang Barse!',
+          line2: 'Happy Holi',
+          line1Size: 64,
+          line2Size: 42,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,20,147,0.3)'
+        },
+        decorations: {
+          topEmoji: '🎨',
+          bottomEmoji: '🌈',
+          cornerEmojis: ['💦', '🎉', '🪔'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'festival-holi-2',
+        occasionId: 'festival-holi',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff69b4 0%, #00bfff 50%, #32cd32 100%)',
+          pattern: 'balloons'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
           glowColor: '#ff69b4',
           shadow: true
         },
         greeting: {
-          line1: 'With Love',
+          line1: 'Bura Na Maano',
+          line2: 'Holi Hai!',
+          line1Size: 56,
+          line2Size: 40,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Holi Hai ',
+          suffix: ' 🎨'
+        },
+        decorations: {
+          topEmoji: '�',
+          bottomEmoji: '�',
+          cornerEmojis: ['�', '🎊'],
+          borderDecor: 'ribbon'
+        }
+      },
+      {
+        id: 'festival-sankranti-1',
+        occasionId: 'festival-sankranti',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #f4d03f 0%, #16a085 50%, #e67e22 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'diamond',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#f4d03f',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Happy Sankranti',
+          line2: 'Uttarayan Celebrations',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(244,208,63,0.3)'
+        },
+        decorations: {
+          topEmoji: '🪁',
+          bottomEmoji: '☀️',
+          cornerEmojis: ['🌾', '🎐'],
+          borderDecor: 'gold'
+        }
+      }
+    ],
+    love: [
+      {
+        id: 'love-romantic-1',
+        occasionId: 'love-romantic',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #ff1744 100%)',
+          pattern: 'hearts'
+        },
+        frame: {
+          shape: 'heart',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ff6b9d',
+          shadow: true
+        },
+        greeting: {
+          line1: 'I Love You',
           line2: 'Forever & Always',
           line1Size: 64,
+          line2Size: 42,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,107,157,0.3)'
+        },
+        decorations: {
+          topEmoji: '💕',
+          bottomEmoji: '❤️',
+          cornerEmojis: ['🌹', '💝', '💘'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'love-romantic-2',
+        occasionId: 'love-romantic',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff006e 0%, #833471 50%, #c44569 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#ff006e',
+          shadow: true
+        },
+        greeting: {
+          line1: 'My Heart Beats',
+          line2: 'Only For You',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'My love ',
+          suffix: ' 💕'
+        },
+        decorations: {
+          topEmoji: '💖',
+          bottomEmoji: '💝',
+          cornerEmojis: ['🌟', '✨'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'love-romantic-3',
+        occasionId: 'love-romantic',
+        layout: { type: 'split' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ee9ca7 0%, #ffdde1 100%)',
+          pattern: 'hearts'
+        },
+        frame: {
+          shape: 'oval',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ee9ca7',
+          shadow: true
+        },
+        greeting: {
+          line1: 'You Complete Me',
+          line2: 'My Everything',
+          line1Size: 56,
           line2Size: 36,
           color: '#ffffff',
           fontStyle: 'script',
@@ -361,27 +1182,234 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           color: '#ffffff',
           y: 65,
           badge: true,
-          badgeColor: 'rgba(255,105,180,0.3)'
+          badgeColor: 'rgba(238,156,167,0.3)'
+        },
+        decorations: {
+          topEmoji: '💑',
+          bottomEmoji: '🥰',
+          cornerEmojis: ['💕', '❤️'],
+          borderDecor: 'floral'
+        }
+      },
+      {
+        id: 'love-valentine-1',
+        occasionId: 'love-valentine',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff1744 0%, #ff6b9d 50%, #ffc0cb 100%)',
+          pattern: 'hearts'
+        },
+        frame: {
+          shape: 'heart',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ff1744',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Be My Valentine',
+          line2: 'Love Always',
+          line1Size: 60,
+          line2Size: 40,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,23,68,0.3)'
+        },
+        decorations: {
+          topEmoji: '🌹',
+          bottomEmoji: '💝',
+          cornerEmojis: ['💕', '❤️', '💌'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'love-valentine-2',
+        occasionId: 'love-valentine',
+        layout: { type: 'corner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#f093fb',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Cupid Strikes',
+          line2: 'Valentine Love',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Valentine ',
+          suffix: ' 🌹'
+        },
+        decorations: {
+          topEmoji: '🏹',
+          bottomEmoji: '💘',
+          cornerEmojis: ['💕', '❤️'],
+          borderDecor: 'ribbon'
+        }
+      }
+    ],
+    anniversary: [
+      {
+        id: 'anniversary-wedding-1',
+        occasionId: 'anniversary-wedding',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #ff1744 100%)',
+          pattern: 'hearts'
+        },
+        frame: {
+          shape: 'heart',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ff6b9d',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Happy Anniversary',
+          line2: 'Forever Together',
+          line1Size: 60,
+          line2Size: 40,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,107,157,0.3)'
+        },
+        decorations: {
+          topEmoji: '💑',
+          bottomEmoji: '🥂',
+          cornerEmojis: ['🌹', '💍', '🎊'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'anniversary-wedding-2',
+        occasionId: 'anniversary-wedding',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#667eea',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Years of Love',
+          line2: 'Memories Forever',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'My love ',
+          suffix: ' 💕'
+        },
+        decorations: {
+          topEmoji: '🎉',
+          bottomEmoji: '🥰',
+          cornerEmojis: ['💖', '✨'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'anniversary-dating-1',
+        occasionId: 'anniversary-dating',
+        layout: { type: 'top' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 45,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#fa709a',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Love Journey',
+          line2: 'Still Going Strong',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 72,
+          prefix: 'My dear ',
+          suffix: ' 🌟'
         },
         decorations: {
           topEmoji: '💕',
-          bottomEmoji: '❤️',
-          cornerEmojis: ['🌹', '💝'],
-          borderDecor: 'gold'
+          bottomEmoji: '🎈',
+          cornerEmojis: ['✨', '🌈'],
+          borderDecor: 'ribbon'
         }
       }
     ],
     motivation: [
       {
-        id: 'motivation-1',
-        occasionId: 'motivation',
+        id: 'motivation-success-1',
+        occasionId: 'motivation-success',
         layout: { type: 'center' },
         background: { 
-          gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+          gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%)',
           pattern: 'stars'
         },
         frame: {
-          shape: 'rounded',
+          shape: 'star',
           x: 50,
           y: 35,
           size: 25,
@@ -394,6 +1422,88 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           line1: 'Dream Big',
           line2: 'Achieve More',
           line1Size: 64,
+          line2Size: 42,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(79,172,254,0.3)'
+        },
+        decorations: {
+          topEmoji: '🚀',
+          bottomEmoji: '⭐',
+          cornerEmojis: ['💫', '✨', '🏆'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'motivation-success-2',
+        occasionId: 'motivation-success',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+          pattern: 'mandala'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#667eea',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Success Is Coming',
+          line2: 'Keep Going',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Champion ',
+          suffix: ' 🏆'
+        },
+        decorations: {
+          topEmoji: '🎯',
+          bottomEmoji: '🏅',
+          cornerEmojis: ['💪', '⚡'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'motivation-inspiration-1',
+        occasionId: 'motivation-inspiration',
+        layout: { type: 'split' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #ffecd2 100%)',
+          pattern: 'waves'
+        },
+        frame: {
+          shape: 'diamond',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#a8edea',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Believe In Yourself',
+          line2: 'Magic Happens',
+          line1Size: 56,
           line2Size: 36,
           color: '#ffffff',
           fontStyle: 'elegant',
@@ -404,13 +1514,390 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           color: '#ffffff',
           y: 65,
           badge: true,
-          badgeColor: 'rgba(0,212,255,0.3)'
+          badgeColor: 'rgba(168,237,234,0.3)'
         },
         decorations: {
-          topEmoji: '🚀',
-          bottomEmoji: '⭐',
-          cornerEmojis: ['💪', '🏆'],
+          topEmoji: '✨',
+          bottomEmoji: '�',
+          cornerEmojis: ['💫', '🦋'],
+          borderDecor: 'floral'
+        }
+      },
+      {
+        id: 'motivation-inspiration-2',
+        occasionId: 'motivation-inspiration',
+        layout: { type: 'top' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 45,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#fcb69f',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Rise & Shine',
+          line2: 'New Day New Goals',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 72,
+          prefix: 'Inspired ',
+          suffix: ' ☀️'
+        },
+        decorations: {
+          topEmoji: '🌅',
+          bottomEmoji: '🌈',
+          cornerEmojis: ['✨', '🦋'],
+          borderDecor: 'ribbon'
+        }
+      }
+    ],
+    'good-morning': [
+      {
+        id: 'morning-inspirational-1',
+        occasionId: 'morning-inspirational',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #f39c12 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#f39c12',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Good Morning Sunshine',
+          line2: 'Rise & Shine',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(243,156,18,0.3)'
+        },
+        decorations: {
+          topEmoji: '☀️',
+          bottomEmoji: '🌻',
+          cornerEmojis: ['✨', '🌈', '🦋'],
           borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'morning-inspirational-2',
+        occasionId: 'morning-inspirational',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #a29bfe 100%)',
+          pattern: 'waves'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#74b9ff',
+          shadow: true
+        },
+        greeting: {
+          line1: 'New Day New Beginnings',
+          line2: 'Make It Amazing',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Good morning ',
+          suffix: ' 🌅'
+        },
+        decorations: {
+          topEmoji: '🌤',
+          bottomEmoji: '☕',
+          cornerEmojis: ['🌻', '✨'],
+          borderDecor: 'sparkle'
+        }
+      }
+    ],
+    'good-night': [
+      {
+        id: 'night-peaceful-1',
+        occasionId: 'night-peaceful',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #9b59b6 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#9b59b6',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Sweet Dreams',
+          line2: 'Peaceful Night',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(155,89,182,0.3)'
+        },
+        decorations: {
+          topEmoji: '🌙',
+          bottomEmoji: '⭐',
+          cornerEmojis: ['💫', '✨', '🌟'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'night-peaceful-2',
+        occasionId: 'night-peaceful',
+        layout: { type: 'bottom' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 25,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#302b63',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Good Night Moonlight',
+          line2: 'Rest Well',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 55
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 85,
+          prefix: 'Sweet dreams ',
+          suffix: ' 🌙'
+        },
+        decorations: {
+          topEmoji: '💤',
+          bottomEmoji: '🌛',
+          cornerEmojis: ['⭐', '✨'],
+          borderDecor: 'gold'
+        }
+      }
+    ],
+    religious: [
+      {
+        id: 'religious-prayer-1',
+        occasionId: 'religious-prayer',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #f39c12 0%, #e67e22 50%, #d35400 100%)',
+          pattern: 'mandala'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#f39c12',
+          shadow: true
+        },
+        greeting: {
+          line1: 'ईश्वर की कृपा',
+          line2: 'Divine Blessings',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(243,156,18,0.3)'
+        },
+        decorations: {
+          topEmoji: '🕉️',
+          bottomEmoji: '🙏',
+          cornerEmojis: ['🪔', '✨', '🌺'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'religious-temple-1',
+        occasionId: 'religious-temple',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #ffcc00 100%)',
+          pattern: 'diyas'
+        },
+        frame: {
+          shape: 'oval',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#e74c3c',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Temple Blessings',
+          line2: 'Peace & Prosperity',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Blessed ',
+          suffix: ' 🙏'
+        },
+        decorations: {
+          topEmoji: '🏛️',
+          bottomEmoji: '🕉️',
+          cornerEmojis: ['🪔', '✨'],
+          borderDecor: 'floral'
+        }
+      }
+    ],
+    wedding: [
+      {
+        id: 'wedding-couple-1',
+        occasionId: 'wedding-couple',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #ff1744 100%)',
+          pattern: 'hearts'
+        },
+        frame: {
+          shape: 'heart',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ff6b9d',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Congratulations Couple',
+          line2: 'Happy Wedding',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,107,157,0.3)'
+        },
+        decorations: {
+          topEmoji: '💑',
+          bottomEmoji: '🎊',
+          cornerEmojis: ['💍', '🌹', '🎉'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'wedding-couple-2',
+        occasionId: 'wedding-couple',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#f093fb',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Two Hearts One Soul',
+          line2: 'Forever Begins',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Happy couple ',
+          suffix: ' 💕'
+        },
+        decorations: {
+          topEmoji: '🎊',
+          bottomEmoji: '🥂',
+          cornerEmojis: ['💍', '✨'],
+          borderDecor: 'floral'
         }
       }
     ]

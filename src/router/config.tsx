@@ -4,6 +4,8 @@ import { lazy } from 'react';
 const LanguageSelection = lazy(() => import('../pages/language/page'));
 const Home = lazy(() => import('../pages/home/page'));
 const Category = lazy(() => import('../pages/category/page'));
+const Occasion = lazy(() => import('../pages/occasion/page'));
+const Personalize = lazy(() => import('../pages/personalize/page'));
 const EnhancedCategoryForm = lazy(() => import('../components/EnhancedCategoryForm'));
 const EnhancedGallery = lazy(() => import('../components/EnhancedGallery'));
 const NotFound = lazy(() => import('../pages/NotFound'));
@@ -27,6 +29,14 @@ const routes: RouteObject[] = [
   {
     path: '/category',
     element: <Category />
+  },
+  {
+    path: '/occasion',
+    element: <Occasion />
+  },
+  {
+    path: '/personalize',
+    element: <Personalize />
   },
   {
     path: '/category/:type',

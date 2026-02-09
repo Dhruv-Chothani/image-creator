@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Download, Share2, Grid, List, Image as ImageIcon, X, Check, RefreshCw } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Download, Share2, Grid, List, Image as ImageIcon, X, Check, RefreshCw, MessageCircle, Instagram, Facebook, Copy, Heart, Sparkles } from 'lucide-react';
 
 interface GeneratedImage {
   id: string;
@@ -25,6 +25,7 @@ interface GalleryState {
 
 export default function EnhancedGallery() {
   const location = useLocation();
+  const navigate = useNavigate();
   const state = location.state as GalleryState;
   const { category = 'birthday', userImage, userName, mode = 'api', generatedImages = [], template } = state || {};
   
@@ -34,6 +35,9 @@ export default function EnhancedGallery() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [isDownloading, setIsDownloading] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [showCompletionFlow, setShowCompletionFlow] = useState(false);
+  const [sharedImages, setSharedImages] = useState<Set<string>>(new Set());
 
   const categories = {
     birthday: { name: 'Birthday', icon: 'ri-cake-3-line', color: 'from-pink-400 to-purple-500' },
@@ -123,6 +127,41 @@ export default function EnhancedGallery() {
   };
 
   const handleShare = async (image: GeneratedImage) => {
+    setSelectedImage(image);
+    setShowShareModal(true);
+  };
+
+  const shareToWhatsApp = (image: GeneratedImage) => {
+    const message = `Check out this amazing ${currentCategory.name.toLowerCase()} image I created with Crafto! 🎨✨`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}%20${encodeURIComponent(image.url)}`;
+    window.open(whatsappUrl, '_blank');
+    setSharedImages(prev => new Set(prev).add(image.id));
+  };
+
+  const shareToInstagram = (image: GeneratedImage) => {
+    // Instagram doesn't support direct sharing via URL, so we'll copy the image and instruct user
+    alert('Image saved! Please open Instagram and share this image from your gallery.');
+    handleDownload(image);
+  };
+
+  const shareToFacebook = (image: GeneratedImage) => {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(image.url)}&quote=${encodeURIComponent(`Check out this amazing ${currentCategory.name.toLowerCase()} image I created with Crafto!`)}`;
+    window.open(facebookUrl, '_blank');
+    setSharedImages(prev => new Set(prev).add(image.id));
+  };
+
+  const copyImageLink = async (image: GeneratedImage) => {
+    try {
+      await navigator.clipboard.writeText(image.url);
+      alert('Image link copied to clipboard!');
+      setSharedImages(prev => new Set(prev).add(image.id));
+    } catch (error) {
+      console.error('Failed to copy link:', error);
+      alert('Failed to copy link');
+    }
+  };
+
+  const handleShareAction = async (image: GeneratedImage) => {
     try {
       setIsSharing(true);
       
@@ -132,14 +171,10 @@ export default function EnhancedGallery() {
           text: `Check out this amazing ${currentCategory.name.toLowerCase()} image I created with Crafto!`,
           url: image.url
         });
-      } else {
-        // Fallback: copy to clipboard
-        await navigator.clipboard.writeText(image.url);
-        alert('Image link copied to clipboard!');
+        setSharedImages(prev => new Set(prev).add(image.id));
       }
     } catch (error) {
       console.error('Failed to share image:', error);
-      alert('Failed to share image');
     } finally {
       setIsSharing(false);
     }
@@ -168,6 +203,28 @@ export default function EnhancedGallery() {
   const handleRegenerate = () => {
     // Go back to category page with same parameters
     window.history.back();
+  };
+
+  const handleCompleteFlow = () => {
+    setShowCompletionFlow(true);
+  };
+
+  const handleTryAnotherOccasion = () => {
+    navigate('/occasion?category=birthday');
+  };
+
+  const handleShareWebsite = () => {
+    const websiteUrl = window.location.origin;
+    if (navigator.share) {
+      navigator.share({
+        title: 'Crafto - Create Stunning Personalized Images',
+        text: 'Create amazing personalized images for any occasion with Crafto!',
+        url: websiteUrl
+      });
+    } else {
+      navigator.clipboard.writeText(websiteUrl);
+      alert('Website link copied to clipboard!');
+    }
   };
 
   return (

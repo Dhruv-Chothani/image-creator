@@ -130,7 +130,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
-              to="/category"
+              to="/occasion?category=birthday"
               className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all transform hover:scale-105 flex items-center space-x-2"
             >
               <span>Start Creating</span>
@@ -188,7 +188,7 @@ export default function Home() {
             {categories.map((category) => (
               <Link
                 key={category.id}
-                to={`/category?type=${category.id}`}
+                to={`/occasion?category=${category.id}`}
                 className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105"
               >
                 <div className="aspect-[4/3] relative overflow-hidden">
@@ -257,7 +257,7 @@ export default function Home() {
             Join thousands of users creating stunning personalized images every day
           </p>
           <Link 
-            to="/category"
+            to="/occasion?category=birthday"
             className="inline-block bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all transform hover:scale-105"
           >
             Start Creating Now
