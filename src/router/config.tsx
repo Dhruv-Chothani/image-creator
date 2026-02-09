@@ -4,8 +4,11 @@ import { lazy } from 'react';
 const LanguageSelection = lazy(() => import('../pages/language/page'));
 const Home = lazy(() => import('../pages/home/page'));
 const Category = lazy(() => import('../pages/category/page'));
-const Occasion = lazy(() => import('../pages/occasion/page'));
-const Personalize = lazy(() => import('../pages/personalize/page'));
+const AIGeneratorPage = lazy(() => import('../pages/ai-generator/page'));
+const OccasionPage = lazy(() => import('../pages/occasion/page'));
+const FestivalOccasionsPage = lazy(() => import('../pages/festival-occasions/page'));
+const SimplePersonalizePage = lazy(() => import('../pages/simple-personalize/page'));
+const PersonalizePage = lazy(() => import('../pages/personalize/page'));
 const EnhancedCategoryForm = lazy(() => import('../components/EnhancedCategoryForm'));
 const EnhancedGallery = lazy(() => import('../components/EnhancedGallery'));
 const NotFound = lazy(() => import('../pages/NotFound'));
@@ -27,16 +30,28 @@ const routes: RouteObject[] = [
     element: <Home />
   },
   {
+    path: '/ai-generator',
+    element: <AIGeneratorPage />
+  },
+  {
     path: '/category',
     element: <Category />
   },
   {
+    path: '/festival-occasions',
+    element: <FestivalOccasionsPage />
+  },
+  {
+    path: '/simple-personalize',
+    element: <SimplePersonalizePage />
+  },
+  {
     path: '/occasion',
-    element: <Occasion />
+    element: <OccasionPage />
   },
   {
     path: '/personalize',
-    element: <Personalize />
+    element: <PersonalizePage />
   },
   {
     path: '/category/:type',

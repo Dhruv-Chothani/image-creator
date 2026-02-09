@@ -15,7 +15,8 @@ export interface TemplateLayout {
 }
 
 export interface BackgroundConfig {
-  gradient: string;
+  gradient?: string;
+  imageUrl?: string;
   overlay?: string;
   pattern?: "dots" | "stars" | "hearts" | "floral" | "sparkles" | "confetti" | "waves" | "mandala" | "diyas" | "snowflakes" | "crescents" | "rangoli" | "balloons" | "ribbons" | "none";
 }
@@ -61,6 +62,42 @@ export interface DecorationConfig {
 // Canvas-based image generator
 const W = 800;
 const H = 1000;
+
+// Global background images for all templates
+let GLOBAL_BACKGROUND_IMAGES: string[] = [];
+let CURRENT_BACKGROUND_INDEX = 0;
+
+export function setGlobalBackgroundImages(imageUrls: string[]) {
+  GLOBAL_BACKGROUND_IMAGES = imageUrls;
+  CURRENT_BACKGROUND_INDEX = 0;
+}
+
+export function setGlobalBackgroundImage(imageUrl: string) {
+  GLOBAL_BACKGROUND_IMAGES = [imageUrl];
+  CURRENT_BACKGROUND_INDEX = 0;
+}
+
+export function getGlobalBackgroundImage(): string | null {
+  return GLOBAL_BACKGROUND_IMAGES.length > 0 ? GLOBAL_BACKGROUND_IMAGES[CURRENT_BACKGROUND_INDEX] : null;
+}
+
+export function getNextBackgroundImage(): string | null {
+  if (GLOBAL_BACKGROUND_IMAGES.length === 0) return null;
+  CURRENT_BACKGROUND_INDEX = (CURRENT_BACKGROUND_INDEX + 1) % GLOBAL_BACKGROUND_IMAGES.length;
+  return GLOBAL_BACKGROUND_IMAGES[CURRENT_BACKGROUND_INDEX];
+}
+
+// Auto-set background images for congratulations and wishes
+export function autoSetBackgroundImages() {
+  const backgroundImages = [
+    '/src/pages/background-test/Gemini_Generated_Image_23tmf223tmf223tm.png',
+    '/src/pages/background-test/Gemini_Generated_Image_7h8y7g7h8y7g7h8y.png',
+    '/src/pages/background-test/Gemini_Generated_Image_okbekeokbekeokbe.png'
+  ];
+  
+  setGlobalBackgroundImages(backgroundImages);
+  console.log('Background images auto-set for all templates:', backgroundImages);
+}
 
 function drawShapePath(ctx: CanvasRenderingContext2D, shape: string, cx: number, cy: number, size: number) {
   const r = size;
@@ -784,145 +821,22 @@ export const getTemplatesForCategory = (category: string): Template[] => {
         occasionId: 'festival-diwali',
         layout: { type: 'banner' },
         background: { 
-          gradient: 'linear-gradient(135deg, #8b4513 0%, #d2691e 50%, #ffd700 100%)',
-          pattern: 'rangoli'
+          gradient: 'linear-gradient(135deg, #ff9a00 0%, #ff6b00 50%, #ffd700 100%)',
+          pattern: 'mandala'
         },
         frame: {
           shape: 'arch',
           x: 50,
           y: 40,
           size: 22,
-          borderColor: '#ffd700',
+          borderColor: '#ffffff',
           borderWidth: 3,
-          glowColor: '#ff6b35',
+          glowColor: '#ff9a00',
           shadow: true
         },
         greeting: {
           line1: 'Shubh Diwali',
-          line2: 'May lights guide your way',
-          line1Size: 64,
-          line2Size: 36,
-          color: '#ffffff',
-          fontStyle: 'script',
-          y: 12
-        },
-        nameStyle: {
-          fontSize: 38,
-          color: '#ffd700',
-          y: 70,
-          prefix: 'Dear ',
-          suffix: ' 🎊'
-        },
-        decorations: {
-          topEmoji: '🏮',
-          bottomEmoji: '🌺',
-          cornerEmojis: ['💥', '🎇'],
-          borderDecor: 'floral'
-        }
-      },
-      {
-        id: 'festival-diwali-3',
-        occasionId: 'festival-diwali',
-        layout: { type: 'fullBg' },
-        background: { 
-          gradient: 'linear-gradient(135deg, #4a0e0e 0%, #8b0000 50%, #ff6b35 100%)',
-          pattern: 'mandala'
-        },
-        frame: {
-          shape: 'circle',
-          x: 50,
-          y: 35,
-          size: 25,
-          borderColor: '#ffd700',
-          borderWidth: 4,
-          glowColor: '#ffd700',
-          shadow: true
-        },
-        greeting: {
-          line1: 'Happy Diwali',
           line2: 'Lakshmi Ki Jai!',
-          line1Size: 60,
-          line2Size: 40,
-          color: '#ffd700',
-          fontStyle: 'elegant',
-          y: 15
-        },
-        nameStyle: {
-          fontSize: 42,
-          color: '#ffffff',
-          y: 65,
-          badge: true,
-          badgeColor: 'rgba(255,215,0,0.4)'
-        },
-        decorations: {
-          topEmoji: '🪔',
-          bottomEmoji: '🎆',
-          cornerEmojis: ['✨', '🌟'],
-          borderDecor: 'sparkle'
-        }
-      },
-      {
-        id: 'festival-christmas-1',
-        occasionId: 'festival-christmas',
-        layout: { type: 'center' },
-        background: { 
-          gradient: 'linear-gradient(135deg, #0f7938 0%, #228b22 50%, #c62828 100%)',
-          pattern: 'snowflakes'
-        },
-        frame: {
-          shape: 'star',
-          x: 50,
-          y: 35,
-          size: 25,
-          borderColor: '#ffffff',
-          borderWidth: 4,
-          glowColor: '#c62828',
-          shadow: true
-        },
-        greeting: {
-          line1: 'Ho Ho Ho!',
-          line2: 'Merry Christmas',
-          line1Size: 56,
-          line2Size: 42,
-          color: '#ffffff',
-          fontStyle: 'playful',
-          y: 15
-        },
-        nameStyle: {
-          fontSize: 42,
-          color: '#ffffff',
-          y: 65,
-          badge: true,
-          badgeColor: 'rgba(198,40,40,0.3)'
-        },
-        decorations: {
-          topEmoji: '🎄',
-          bottomEmoji: '🎅',
-          cornerEmojis: ['🔔', '⛄', '🎁'],
-          borderDecor: 'gold'
-        }
-      },
-      {
-        id: 'festival-christmas-2',
-        occasionId: 'festival-christmas',
-        layout: { type: 'top' },
-        background: { 
-          gradient: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #c62828 100%)',
-          pattern: 'snowflakes'
-        },
-        frame: {
-          shape: 'rounded',
-          x: 50,
-          y: 45,
-          size: 22,
-          borderColor: '#ffffff',
-          borderWidth: 3,
-          glowColor: '#c62828',
-          shadow: true
-        },
-        greeting: {
-          line1: 'Joy to the World',
-          line2: 'Peace & Love',
           line1Size: 56,
           line2Size: 36,
           color: '#ffffff',
@@ -932,14 +846,14 @@ export const getTemplatesForCategory = (category: string): Template[] => {
         nameStyle: {
           fontSize: 38,
           color: '#ffffff',
-          y: 72,
-          prefix: 'Merry Christmas ',
-          suffix: ' 🎄'
+          y: 70,
+          prefix: 'Diwali ',
+          suffix: ' 🪔'
         },
         decorations: {
-          topEmoji: '🎅',
-          bottomEmoji: '🤶',
-          cornerEmojis: ['🔔', '⭐'],
+          topEmoji: '�',
+          bottomEmoji: '�',
+          cornerEmojis: ['�', '✨'],
           borderDecor: 'sparkle'
         }
       },
@@ -948,24 +862,24 @@ export const getTemplatesForCategory = (category: string): Template[] => {
         occasionId: 'festival-holi',
         layout: { type: 'center' },
         background: { 
-          gradient: 'linear-gradient(135deg, #ff1493 0%, #00ff00 25%, #ffff00 50%, #ff4500 75%, #9400d3 100%)',
+          gradient: 'linear-gradient(135deg, #ff006e 0%, #fb5607 50%, #ffbe0b 25%, #8338ec 75%)',
           pattern: 'confetti'
         },
         frame: {
-          shape: 'hexagon',
+          shape: 'circle',
           x: 50,
           y: 35,
           size: 25,
           borderColor: '#ffffff',
           borderWidth: 4,
-          glowColor: '#ff1493',
+          glowColor: '#ff006e',
           shadow: true
         },
         greeting: {
           line1: 'Rang Barse!',
-          line2: 'Happy Holi',
-          line1Size: 64,
-          line2Size: 42,
+          line2: 'Bura Na Maano Holi Hai!',
+          line1Size: 56,
+          line2Size: 36,
           color: '#ffffff',
           fontStyle: 'playful',
           y: 15
@@ -975,63 +889,22 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           color: '#ffffff',
           y: 65,
           badge: true,
-          badgeColor: 'rgba(255,20,147,0.3)'
+          badgeColor: 'rgba(255,0,110,0.3)'
         },
         decorations: {
           topEmoji: '🎨',
-          bottomEmoji: '🌈',
-          cornerEmojis: ['💦', '🎉', '🪔'],
-          borderDecor: 'sparkle'
+          bottomEmoji: '�',
+          cornerEmojis: ['🎉', '�', '🥳'],
+          borderDecor: 'floral'
         }
       },
       {
         id: 'festival-holi-2',
         occasionId: 'festival-holi',
-        layout: { type: 'banner' },
+        layout: { type: 'split' },
         background: { 
-          gradient: 'linear-gradient(135deg, #ff69b4 0%, #00bfff 50%, #32cd32 100%)',
+          gradient: 'linear-gradient(135deg, #ff4757 0%, #ff6348 50%, #ffa502 100%)',
           pattern: 'balloons'
-        },
-        frame: {
-          shape: 'circle',
-          x: 50,
-          y: 40,
-          size: 22,
-          borderColor: '#ffffff',
-          borderWidth: 3,
-          glowColor: '#ff69b4',
-          shadow: true
-        },
-        greeting: {
-          line1: 'Bura Na Maano',
-          line2: 'Holi Hai!',
-          line1Size: 56,
-          line2Size: 40,
-          color: '#ffffff',
-          fontStyle: 'playful',
-          y: 12
-        },
-        nameStyle: {
-          fontSize: 38,
-          color: '#ffffff',
-          y: 70,
-          prefix: 'Holi Hai ',
-          suffix: ' 🎨'
-        },
-        decorations: {
-          topEmoji: '�',
-          bottomEmoji: '�',
-          cornerEmojis: ['�', '🎊'],
-          borderDecor: 'ribbon'
-        }
-      },
-      {
-        id: 'festival-sankranti-1',
-        occasionId: 'festival-sankranti',
-        layout: { type: 'center' },
-        background: { 
-          gradient: 'linear-gradient(135deg, #f4d03f 0%, #16a085 50%, #e67e22 100%)',
-          pattern: 'stars'
         },
         frame: {
           shape: 'diamond',
@@ -1040,7 +913,48 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           size: 25,
           borderColor: '#ffffff',
           borderWidth: 4,
-          glowColor: '#f4d03f',
+          glowColor: '#ff4757',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Happy Holi',
+          line2: 'Colors of Joy!',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          prefix: 'Holi ',
+          suffix: ' 🎨'
+        },
+        decorations: {
+          topEmoji: '🌈',
+          bottomEmoji: '🎉',
+          cornerEmojis: ['🎊', '✨'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'festival-sankranti-1',
+        occasionId: 'festival-sankranti',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ffd700 0%, #ffb347 50%, #ff8c00 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'oval',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ffd700',
           shadow: true
         },
         greeting: {
@@ -1057,13 +971,300 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           color: '#ffffff',
           y: 65,
           badge: true,
-          badgeColor: 'rgba(244,208,63,0.3)'
+          badgeColor: 'rgba(255,215,0,0.3)'
         },
         decorations: {
           topEmoji: '🪁',
           bottomEmoji: '☀️',
-          cornerEmojis: ['🌾', '🎐'],
+          cornerEmojis: ['🌟', '✨', '�'],
           borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'festival-sankranti-2',
+        occasionId: 'festival-sankranti',
+        layout: { type: 'top' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ffa500 0%, #ff8c00 50%, #ffd700 100%)',
+          pattern: 'waves'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 45,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#ffa500',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Til Gul Ghya',
+          line2: 'New Harvest Joy',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 72,
+          prefix: 'Sankranti ',
+          suffix: ' 🪁'
+        },
+        decorations: {
+          topEmoji: '�',
+          bottomEmoji: '☀️',
+          cornerEmojis: ['🌟', '✨'],
+          borderDecor: 'ribbon'
+        }
+      },
+      {
+        id: 'festival-rakshabandhan-1',
+        occasionId: 'festival-rakshabandhan',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #ff1744 100%)',
+          pattern: 'hearts'
+        },
+        frame: {
+          shape: 'heart',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ff6b9d',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Happy Raksha Bandhan',
+          line2: 'Brother-Sister Love',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,107,157,0.3)'
+        },
+        decorations: {
+          topEmoji: '�',
+          bottomEmoji: '💝',
+          cornerEmojis: ['❤️', '💕', '💖'],
+          borderDecor: 'floral'
+        }
+      },
+      {
+        id: 'festival-rakshabandhan-2',
+        occasionId: 'festival-rakshabandhan',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #e91e63 0%, #c2185b 50%, #ad1457 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#e91e63',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Sacred Bond',
+          line2: 'Protective Thread',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Rakhi ',
+          suffix: ' �'
+        },
+        decorations: {
+          topEmoji: '💝',
+          bottomEmoji: '❤️',
+          cornerEmojis: ['💕', '✨'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'festival-ganesh-1',
+        occasionId: 'festival-ganesh',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #4caf50 0%, #8bc34a 50%, #cddc39 100%)',
+          pattern: 'mandala'
+        },
+        frame: {
+          shape: 'oval',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#4caf50',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Ganpati Bappa Morya!',
+          line2: 'Happy Ganesh Chaturthi',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(76,175,80,0.3)'
+        },
+        decorations: {
+          topEmoji: '🙏',
+          bottomEmoji: '🌺',
+          cornerEmojis: ['🪔', '✨', '🌟'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'festival-ganesh-2',
+        occasionId: 'festival-ganesh',
+        layout: { type: 'bottom' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #2e7d32 0%, #388e3c 50%, #43a047 100%)',
+          pattern: 'diyas'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 25,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#2e7d32',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Lord Ganesha Blessings',
+          line2: 'Vinayaka Chavithi',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 55
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 85,
+          prefix: 'Ganesh ',
+          suffix: ' 🙏'
+        },
+        decorations: {
+          topEmoji: '🌺',
+          bottomEmoji: '🪔',
+          cornerEmojis: ['✨', '🌟'],
+          borderDecor: 'floral'
+        }
+      },
+      {
+        id: 'festival-christmas-1',
+        occasionId: 'festival-christmas',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #0f7938 0%, #1e88e5 50%, #c62828 100%)',
+          pattern: 'snowflakes'
+        },
+        frame: {
+          shape: 'star',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#0f7938',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Ho Ho Ho!',
+          line2: 'Merry Christmas',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(15,121,56,0.3)'
+        },
+        decorations: {
+          topEmoji: '🎄',
+          bottomEmoji: '🎅',
+          cornerEmojis: ['�', '⭐', '❄️'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'festival-christmas-2',
+        occasionId: 'festival-christmas',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #c62828 0%, #0f7938 50%, #1e88e5 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#c62828',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Joy to the World',
+          line2: 'Santa Claus Magic',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Christmas ',
+          suffix: ' 🎄'
+        },
+        decorations: {
+          topEmoji: '🎅',
+          bottomEmoji: '🎁',
+          cornerEmojis: ['⭐', '❄️'],
+          borderDecor: 'sparkle'
         }
       }
     ],
@@ -1900,6 +2101,172 @@ export const getTemplatesForCategory = (category: string): Template[] => {
           borderDecor: 'floral'
         }
       }
+    ],
+    congratulations: [
+      {
+        id: 'congratulations-achievement-1',
+        occasionId: 'congratulations-achievement',
+        layout: { type: 'center' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #fff59d 100%)',
+          pattern: 'stars'
+        },
+        frame: {
+          shape: 'star',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#ffd700',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Congratulations!',
+          line2: 'You Did It!',
+          line1Size: 64,
+          line2Size: 42,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(255,215,0,0.3)'
+        },
+        decorations: {
+          topEmoji: '🏆',
+          bottomEmoji: '⭐',
+          cornerEmojis: ['🎉', '🎊', '🥳'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'congratulations-achievement-2',
+        occasionId: 'congratulations-achievement',
+        layout: { type: 'banner' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #4caf50 0%, #8bc34a 50%, #cddc39 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'arch',
+          x: 50,
+          y: 40,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#4caf50',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Success Achieved',
+          line2: 'Well Done!',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'script',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 70,
+          prefix: 'Champion ',
+          suffix: ' 🏅'
+        },
+        decorations: {
+          topEmoji: '🎯',
+          bottomEmoji: '🏆',
+          cornerEmojis: ['⚡', '✨'],
+          borderDecor: 'sparkle'
+        }
+      },
+      {
+        id: 'congratulations-graduation-1',
+        occasionId: 'congratulations-graduation',
+        layout: { type: 'split' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #2196f3 0%, #03a9f4 50%, #00bcd4 100%)',
+          pattern: 'waves'
+        },
+        frame: {
+          shape: 'diamond',
+          x: 50,
+          y: 35,
+          size: 25,
+          borderColor: '#ffffff',
+          borderWidth: 4,
+          glowColor: '#2196f3',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Graduation Success',
+          line2: 'Dreams Come True',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'elegant',
+          y: 15
+        },
+        nameStyle: {
+          fontSize: 42,
+          color: '#ffffff',
+          y: 65,
+          badge: true,
+          badgeColor: 'rgba(33,150,243,0.3)'
+        },
+        decorations: {
+          topEmoji: '🎓',
+          bottomEmoji: '📚',
+          cornerEmojis: ['🎉', '✨', '🌟'],
+          borderDecor: 'gold'
+        }
+      },
+      {
+        id: 'congratulations-graduation-2',
+        occasionId: 'congratulations-graduation',
+        layout: { type: 'top' },
+        background: { 
+          gradient: 'linear-gradient(135deg, #9c27b0 0%, #ab47bc 50%, #ba68c8 100%)',
+          pattern: 'sparkles'
+        },
+        frame: {
+          shape: 'circle',
+          x: 50,
+          y: 45,
+          size: 22,
+          borderColor: '#ffffff',
+          borderWidth: 3,
+          glowColor: '#9c27b0',
+          shadow: true
+        },
+        greeting: {
+          line1: 'Proud Graduate',
+          line2: 'New Chapter Begins',
+          line1Size: 56,
+          line2Size: 36,
+          color: '#ffffff',
+          fontStyle: 'playful',
+          y: 12
+        },
+        nameStyle: {
+          fontSize: 38,
+          color: '#ffffff',
+          y: 72,
+          prefix: 'Graduate ',
+          suffix: ' 🎓'
+        },
+        decorations: {
+          topEmoji: '🎊',
+          bottomEmoji: '🌟',
+          cornerEmojis: ['📚', '✨'],
+          borderDecor: 'ribbon'
+        }
+      }
     ]
   };
 
@@ -1917,9 +2284,49 @@ export async function generateCanvasImage(
   canvas.height = H;
   const ctx = canvas.getContext("2d")!;
 
-  // 1. Background gradient
-  ctx.fillStyle = parseGradient(ctx, template.background.gradient);
-  ctx.fillRect(0, 0, W, H);
+  // 1. Background - Global images, custom image, or gradient
+  const currentBgImage = getGlobalBackgroundImage();
+  if (currentBgImage) {
+    // Draw current global background image
+    const bgImg = new Image();
+    bgImg.crossOrigin = "anonymous";
+    await new Promise<void>((resolve, reject) => {
+      bgImg.onload = () => resolve();
+      bgImg.onerror = reject;
+      bgImg.src = currentBgImage;
+    });
+    
+    // Scale and crop background image to fit canvas
+    const scale = Math.max(W / bgImg.width, H / bgImg.height);
+    const scaledWidth = bgImg.width * scale;
+    const scaledHeight = bgImg.height * scale;
+    const x = (W - scaledWidth) / 2;
+    const y = (H - scaledHeight) / 2;
+    
+    ctx.drawImage(bgImg, x, y, scaledWidth, scaledHeight);
+  } else if (template.background.imageUrl) {
+    // Draw custom background image
+    const bgImg = new Image();
+    bgImg.crossOrigin = "anonymous";
+    await new Promise<void>((resolve, reject) => {
+      bgImg.onload = () => resolve();
+      bgImg.onerror = reject;
+      bgImg.src = template.background.imageUrl;
+    });
+    
+    // Scale and crop background image to fit canvas
+    const scale = Math.max(W / bgImg.width, H / bgImg.height);
+    const scaledWidth = bgImg.width * scale;
+    const scaledHeight = bgImg.height * scale;
+    const x = (W - scaledWidth) / 2;
+    const y = (H - scaledHeight) / 2;
+    
+    ctx.drawImage(bgImg, x, y, scaledWidth, scaledHeight);
+  } else if (template.background.gradient) {
+    // Fallback to gradient
+    ctx.fillStyle = parseGradient(ctx, template.background.gradient);
+    ctx.fillRect(0, 0, W, H);
+  }
 
   // 2. Subtle overlay for depth
   const overlay = ctx.createRadialGradient(W / 2, H * 0.35, 50, W / 2, H / 2, W);

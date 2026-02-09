@@ -1,7 +1,29 @@
 import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { autoSetBackgroundImages } from '../../services/canvasImageGenerator';
 
 export default function Home() {
+  // Auto-set background images for all templates on app load
+  React.useEffect(() => {
+    autoSetBackgroundImages();
+  }, []);
+
   const categories = [
+    {
+      id: 'good-morning',
+      name: 'Good Morning',
+      icon: 'ri-sun-fill',
+      gradient: 'from-yellow-400 to-orange-500',
+      image: 'https://readdy.ai/api/search-image?query=Beautiful%20sunrise%20scene%20with%20golden%20sun%20rays%2C%20morning%20sky%20with%20soft%20clouds%2C%20fresh%20flowers%2C%20tea%20cup%2C%20peaceful%20and%20energetic%20morning%20atmosphere%2C%20warm%20yellow%20and%20orange%20gradient%20background%2C%20high-quality%20photography%2C%20centered%20composition%2C%20bright%20morning%20lighting%2C%20inspirational%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-morning-001&orientation=landscape'
+    },
+    {
+      id: 'festivals',
+      name: 'Festivals',
+      icon: 'ri-gift-fill',
+      gradient: 'from-green-400 to-teal-500',
+      link: '/festival-occasions',
+      image: 'https://readdy.ai/api/search-image?query=Indian%20festival%20celebration%20scene%20with%20colorful%20rangoli%2C%20diyas%2C%20marigold%20flowers%2C%20decorative%20lights%2C%20vibrant%20multi-colored%20background%20with%20sparkles%2C%20joyful%20and%20celebratory%20atmosphere%2C%20Diwali%20Holi%20aesthetic%2C%20high-quality%20photography%2C%20centered%20composition%2C%20bright%20lighting%2C%20traditional%20Indian%20festival%20style&width=400&height=300&seq=cat-festivals-002&orientation=landscape'
+    },
     {
       id: 'birthday',
       name: 'Birthday',
@@ -13,36 +35,8 @@ export default function Home() {
       id: 'anniversary',
       name: 'Anniversary',
       icon: 'ri-calendar-heart-fill',
-      gradient: 'from-red-400 to-pink-500',
+      gradient: 'from-rose-400 to-pink-500',
       image: 'https://readdy.ai/api/search-image?query=Elegant%20anniversary%20celebration%20with%20champagne%20glasses%2C%20red%20roses%2C%20romantic%20candles%2C%20and%20golden%20decorations%2C%20sophisticated%20burgundy%20and%20gold%20gradient%20background%2C%20luxurious%20and%20intimate%20atmosphere%2C%20high-quality%20photography%2C%20centered%20composition%2C%20warm%20ambient%20lighting%2C%20celebration%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-anniversary-002&orientation=landscape'
-    },
-    {
-      id: 'love',
-      name: 'Love',
-      icon: 'ri-heart-3-fill',
-      gradient: 'from-rose-400 to-red-500',
-      image: 'https://readdy.ai/api/search-image?query=Romantic%20love%20theme%20with%20soft%20rose%20petals%2C%20heart%20shapes%2C%20romantic%20couple%20silhouette%2C%20and%20warm%20ambient%20lighting%2C%20dreamy%20pink%20and%20red%20gradient%20background%2C%20elegant%20and%20intimate%20atmosphere%2C%20high-quality%20photography%2C%20centered%20composition%2C%20soft%20focus%2C%20Valentine%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-love-002&orientation=landscape'
-    },
-    {
-      id: 'festivals',
-      name: 'Festivals',
-      icon: 'ri-gift-fill',
-      gradient: 'from-orange-400 to-yellow-500',
-      image: 'https://readdy.ai/api/search-image?query=Indian%20festival%20celebration%20scene%20with%20colorful%20rangoli%2C%20diyas%2C%20marigold%20flowers%2C%20decorative%20lights%2C%20vibrant%20multi-colored%20background%20with%20sparkles%2C%20joyful%20and%20celebratory%20atmosphere%2C%20Diwali%20Holi%20aesthetic%2C%20high-quality%20photography%2C%20centered%20composition%2C%20bright%20lighting%2C%20traditional%20Indian%20festival%20style&width=400&height=300&seq=cat-festivals-002&orientation=landscape'
-    },
-    {
-      id: 'good-morning',
-      name: 'Good Morning',
-      icon: 'ri-sun-fill',
-      gradient: 'from-yellow-400 to-orange-500',
-      image: 'https://readdy.ai/api/search-image?query=Beautiful%20sunrise%20scene%20with%20golden%20sun%20rays%2C%20morning%20sky%20with%20soft%20clouds%2C%20fresh%20flowers%2C%20tea%20cup%2C%20peaceful%20and%20energetic%20morning%20atmosphere%2C%20warm%20yellow%20and%20orange%20gradient%20background%2C%20high-quality%20photography%2C%20centered%20composition%2C%20bright%20morning%20lighting%2C%20inspirational%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-morning-001&orientation=landscape'
-    },
-    {
-      id: 'good-night',
-      name: 'Good Night',
-      icon: 'ri-moon-fill',
-      gradient: 'from-indigo-500 to-purple-600',
-      image: 'https://readdy.ai/api/search-image?query=Peaceful%20night%20scene%20with%20crescent%20moon%2C%20twinkling%20stars%2C%20night%20sky%2C%20soft%20clouds%2C%20calming%20and%20serene%20atmosphere%2C%20deep%20blue%20and%20purple%20gradient%20background%2C%20high-quality%20photography%2C%20centered%20composition%2C%20moonlight%20glow%2C%20dreamy%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-night-001&orientation=landscape'
     },
     {
       id: 'motivation',
@@ -52,39 +46,11 @@ export default function Home() {
       image: 'https://readdy.ai/api/search-image?query=Inspirational%20motivation%20scene%20with%20mountain%20peak%2C%20success%20symbols%2C%20upward%20arrows%2C%20trophy%2C%20achievement%20elements%2C%20energetic%20and%20powerful%20atmosphere%2C%20vibrant%20blue%20and%20gold%20gradient%20background%2C%20high-quality%20photography%2C%20centered%20composition%2C%20dynamic%20lighting%2C%20success%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-motivation-002&orientation=landscape'
     },
     {
-      id: 'political',
-      name: 'Political Leaders',
-      icon: 'ri-government-fill',
-      gradient: 'from-green-500 to-teal-600',
-      image: 'https://readdy.ai/api/search-image?query=Political%20theme%20with%20Indian%20flag%20tricolor%2C%20national%20symbols%2C%20patriotic%20elements%2C%20government%20building%20silhouette%2C%20professional%20and%20dignified%20atmosphere%2C%20saffron%20green%20and%20white%20gradient%20background%2C%20high-quality%20photography%2C%20centered%20composition%2C%20formal%20lighting%2C%20national%20pride%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-political-001&orientation=landscape'
-    },
-    {
-      id: 'trending',
-      name: 'Trending',
-      icon: 'ri-fire-fill',
-      gradient: 'from-purple-500 to-pink-500',
-      image: 'https://readdy.ai/api/search-image?query=Modern%20trending%20social%20media%20theme%20with%20gradient%20backgrounds%2C%20geometric%20shapes%2C%20viral%20symbols%2C%20fire%20emoji%20aesthetic%2C%20contemporary%20design%20elements%2C%20vibrant%20purple%20and%20pink%20gradient%2C%20stylish%20and%20fresh%20atmosphere%2C%20high-quality%20photography%2C%20centered%20composition%2C%20cool%20lighting%2C%20viral%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-trending-002&orientation=landscape'
-    },
-    {
-      id: 'business',
-      name: 'Business',
-      icon: 'ri-briefcase-fill',
-      gradient: 'from-gray-600 to-blue-700',
-      image: 'https://readdy.ai/api/search-image?query=Professional%20business%20theme%20with%20office%20elements%2C%20success%20symbols%2C%20corporate%20aesthetic%2C%20modern%20workspace%2C%20professional%20and%20sophisticated%20atmosphere%2C%20navy%20blue%20and%20silver%20gradient%20background%2C%20high-quality%20photography%2C%20centered%20composition%2C%20professional%20lighting%2C%20corporate%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-business-001&orientation=landscape'
-    },
-    {
-      id: 'wedding',
-      name: 'Wedding',
-      icon: 'ri-heart-2-fill',
-      gradient: 'from-pink-300 to-rose-400',
-      image: 'https://readdy.ai/api/search-image?query=Beautiful%20Indian%20wedding%20theme%20with%20marigold%20flowers%2C%20traditional%20decorations%2C%20wedding%20rings%2C%20mandap%20elements%2C%20elegant%20and%20romantic%20atmosphere%2C%20soft%20pink%20and%20gold%20gradient%20background%2C%20high-quality%20photography%2C%20centered%20composition%2C%20warm%20lighting%2C%20traditional%20Indian%20wedding%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-wedding-001&orientation=landscape'
-    },
-    {
-      id: 'religious',
-      name: 'Religious',
-      icon: 'ri-ancient-gate-fill',
-      gradient: 'from-amber-500 to-orange-600',
-      image: 'https://readdy.ai/api/search-image?query=Spiritual%20religious%20theme%20with%20temple%20bells%2C%20diyas%2C%20incense%2C%20om%20symbol%2C%20lotus%20flowers%2C%20peaceful%20and%20divine%20atmosphere%2C%20golden%20and%20saffron%20gradient%20background%2C%20high-quality%20photography%2C%20centered%20composition%2C%20divine%20lighting%2C%20spiritual%20aesthetic%2C%20Instagram-worthy%20style&width=400&height=300&seq=cat-religious-001&orientation=landscape'
+      id: 'congratulations',
+      name: 'Congratulations',
+      icon: 'ri-trophy-fill',
+      gradient: 'from-amber-400 to-yellow-500',
+      image: 'https://cdnnew.interflora.in/f_auto,q_auto,t_pnopt8prodlp/products/p-the-grand-golden-405416-m.jpg'
     }
   ];
 
@@ -126,11 +92,11 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Upload one photo and instantly generate 10-20 beautiful designs. Perfect for birthdays, celebrations, and special moments.
+            Upload one photo and instantly generate 7-8 beautiful designs. Perfect for birthdays, celebrations, and special moments.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
-              to="/occasion?category=birthday"
+              to={`/simple-personalize?category=birthday`}
               className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl transition-all transform hover:scale-105 flex items-center space-x-2"
             >
               <span>Start Creating</span>
@@ -188,7 +154,7 @@ export default function Home() {
             {categories.map((category) => (
               <Link
                 key={category.id}
-                to={`/occasion?category=${category.id}`}
+                to={category.link || `/simple-personalize?category=${category.id}`}
                 className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105"
               >
                 <div className="aspect-[4/3] relative overflow-hidden">
